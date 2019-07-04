@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Template -->
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Alice|Zilla+Slab:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'polls/css/styles-merged.css' %}">
+    <link rel="stylesheet" href="{% static 'polls/css/style.css' %}">
+    <title>Isra & Coi</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'polls/img/favicon.ico' %}" />
+  </head>
+
+  <body>
+
+  {% block content %}
+  {% endblock %}
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {% load staticfiles %}
+    <script src="{% static 'polls/js/scripts.min.js' %}"></script>
+    <script src="{% static 'polls/js/custom.js' %}"></script>
+
+    <!-- Google Map -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm4II7FfSYO1wj89XBoU1j_52ZWCiYztc&callback=initMap"></script>
+    <script src="{% static 'polls/js/google-map.js' %}"></script>
+  </body>
+</html>

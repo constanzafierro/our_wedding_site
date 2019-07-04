@@ -1,0 +1,24 @@
+<!-- templates/registration/login.html -->
+{% extends 'polls/base_2.html' %}
+{% load staticfiles%}
+
+{% block content_base2 %}
+    <div class="row mb40">
+      <div class="col-md-12 text-center">
+        <h2 class="mt0 mb10">Iniciar sesión</h2>
+          <p><b>Usuario:</b> nombre y apellido (en minúsculas y sin espacio ni acentos)</p>
+              <p><b>Contraseña:</b> tu nombre y RUT (en minúsculas y sin puntos ni guión)</p>
+      </div>
+    </div>
+    <div class="row mb40">
+      <div class="col-md-12 text-center">
+          <form id="sign-in" method="post">
+          {% csrf_token %}
+          <p><label for="id_username">Usuario:</label>
+              <input type="text" name="username" autofocus="" required="" id="id_username"></p>
+<p><label for="id_password">Contraseña:</label> <input type="password" name="password" required="" id="id_password"></p>
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'polls/base_2.html' %}
+{% load staticfiles%}
+
+{% block content_base2 %}
+        <div class="row mb40">
+          <div class="col-md-12 text-center">
+            <h2 class="mt0 mb10">{{ guest.guest_user.username }}:</h2>
+          </div>
+        </div>
+        <div class="row info-card">
+            {% if guest.confirmation_status %}
+                <div class="col-md-12 col-md-offset-4 info-card-text">
+                    <h4>✅ Ya confirmaste.</h4>
+                <!-- alcohol -->
+                    {% if guest.drink_check %}<h4>🍾 Tenemos anotado que <u>sí</u> bebes alcohol.</h4>
+                    {% else %}<h4>🍹 Tenemos anotado que <u>no</u> bebes alcohol.</h4>
+                    {% endif %}
+                <!-- veggie -->
+                    {% if guest.is_veggie %}<h4>🥕 Y te tendremos comida vegana.</h4>
+                    {% else %}<h4>🥩 Y que comes carne.</h4>
+                    {% endif %}
+                <!-- plus one -->
+                    {% if guest.has_plus_one %}
+                        {% if guest.plus_one is not None %}
+                            <h4 style="margin-bottom: 0;">✅ Confirmaste a tu pareja:</h4>
+                            <div class="info-plus-one">
+                            <p>Nombre: {{ guest.plus_one.name }}<br>
+                            Apellido: {{ guest.plus_one.last_name }}<br>
+                            Bebe alcohol:
+                            {% if guest.plus_one.drink_check %}Si<br>
+                            {% else %}No<br>
+                            {% endif %}
+                            Es vegetariano o vegano:
+                            {% if guest.plus_one.is_veggie %}Si
+                            {% else %}No
+                            {% endif %}
+                            </p></div>
+                         {% else %}
+                            <h4>🚫 Pero aún no agregas la información de tu pareja.</h4>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% else %}
+                <h4>Dejaremos anotado que <u>no</u> puedes asistir 😔...</h4>
+                <h4>Pero entendemos que fue un poco encima, gracias por avisarnos!</h4>
+            {% endif %}
+        </div>
+        <div class="row">
+        <div class="text-center">
+            <a href="{% url 'polls:rsvp' user.id %}"><button class="btn btn-primary">Editar / Agregar</button></a>
+            </div>
+        </div>
+
+{% endblock %}

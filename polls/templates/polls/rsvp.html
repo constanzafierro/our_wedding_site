@@ -1,0 +1,34 @@
+<!-- templates/registration/rsvp.html -->
+{% extends 'polls/base_2.html' %}
+{% load staticfiles%}
+
+{% block content_base2 %}
+        <div class="row mb40">
+          <div class="col-md-12 text-center">
+            <form action="{% url 'polls:send_answer' user.id %}" method="post">
+            <h2 class="mt0 mb10">¿Vas a asistir a nuestro matrimonio? 👰🏽🤵🏾</h2>
+            {% csrf_token %}
+                <input type="radio" name="choice" style="margin: 0.5em;" value="{{ 1 }}">
+                <label for="choice{{ yes }}">Obvio 💃🏽🕺🏽</label><br>
+
+                <input type="radio" name="choice" style="margin: 0.5em;" value="{{ 0 }}">
+                <label for="choice{{ no }}">No puedo ir...</label><br><br><br>
+
+                <h3 class="mt0 mb10">¿Tomas alcohol?</h3>
+                <input type="radio" name="alcohol" style="margin: 0.5em;" value="{{ 1 }}">
+                <label for="alcohol{{ yes }}">Si </label><br>
+                <input type="radio" name="alcohol" style="margin: 0.5em;" value="{{ 0 }}">
+                <label for="alcohol{{ no }}">No </label><br><br>
+
+                <h3 class="mt0 mb10">¿Eres vegetariano/vegano 🍆?</h3>
+                <input type="radio" name="veggie" style="margin: 0.5em;" value="{{ 1 }}">
+                <label for="veggie{{ yes }}">Si </label><br>
+                <input type="radio" name="veggie" style="margin: 0.5em;" value="{{ 0 }}">
+                <label for="veggie{{ no }}">No </label><br><br>
+
+                <input type="submit" class="btn btn-primary" value="Enviar">
+            </form>
+          </div>
+        </div>
+
+{% endblock %}

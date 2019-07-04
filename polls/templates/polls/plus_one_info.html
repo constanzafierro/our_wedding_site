@@ -1,0 +1,26 @@
+<!-- templates/home.html -->
+{% extends 'polls/base_2.html' %}
+{% load staticfiles%}
+
+{% block content_base2 %}
+        <div class="row mb40">
+          <div class="col-md-12 text-center">
+            <h2 class="mt0 mb10">Te invitamos además con pololo(a) 🥂</h2>
+            <h4>Ingresa su información</h4>
+          </div>
+        </div>
+        <div class="row mb40">
+          <div class="col-md-12 text-center">
+            {% if has_plus_one %}
+                <form action="{% url 'polls:plus_one_info' user.id %}" method="POST" class="post-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary" value="save">Guardar</button>
+                </form>
+            {% else %}
+                Esta página no está disponible para ti...
+            {% endif %}
+          </div>
+        </div>
+
+{% endblock %}
