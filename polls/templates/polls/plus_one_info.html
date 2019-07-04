@@ -11,10 +11,15 @@
         </div>
         <div class="row mb40">
           <div class="col-md-12 text-center">
-            {% if has_plus_one %}
+            {% if guest.has_plus_one %}
                 <form action="{% url 'polls:plus_one_info' user.id %}" method="POST" class="post-form">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <p><label for="id_name">Nombre:</label><input type="text" name="name" maxlength="200" id="id_name"></p>
+                    <p><label for="id_last_name">Apellido:</label> <input type="text" name="last_name" maxlength="200" id="id_last_name"></p>
+                    {% if not guest.just_party %}
+                        <p><label for="id_drink_check">Bebe alcohol?</label> <input type="checkbox" name="drink_check" id="id_drink_check" checked=""></p>
+                        <p><label for="id_is_veggie">Es vegetariano o vegano?</label> <input type="checkbox" name="is_veggie" id="id_is_veggie"></p>
+                    {% endif %}
                     <button type="submit" class="btn btn-primary" value="save">Guardar</button>
                 </form>
             {% else %}

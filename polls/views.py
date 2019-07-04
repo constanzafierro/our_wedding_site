@@ -36,8 +36,9 @@ def send_answer(request, user_id):
     try:
         confirm = int(request.POST['choice']) == 1
         guest_object.confirmation_status = confirm
-        guest_object.drink_check = request.POST['alcohol']
-        guest_object.is_veggie = request.POST['veggie']
+        if not guest_object.just_party:
+            guest_object.drink_check = int(request.POST['alcohol'])
+            guest_object.is_veggie = int(request.POST['veggie'])
         guest_object.save()
     except KeyError:
         # Redisplay the question voting form.
@@ -56,7 +57,6 @@ def send_answer(request, user_id):
 @login_required(login_url='/polls/login/')
 def show_answer(request, user_id):
     guest_object = Guest.objects.get(guest_user=request.user)
-    print("en show_answer")
     if guest_object.confirmation_status:
         context = {
             'guest': guest_object
@@ -69,11 +69,9 @@ def show_answer(request, user_id):
 @login_required(login_url='/polls/login/')
 def plus_one_form(request, user_id):
     guest_object = Guest.objects.get(guest_user=request.user)
-    print("(plus_one_form) using user:", request.user)
-    print("(plus_one_form) got guest obj:", guest_object)
     form = PlusOneForm()
     context = {
-        'has_plus_one': guest_object.has_plus_one,
+        'guest': guest_object,
         'form': form
     }
     return render(request, 'polls/plus_one_info.html', context)
@@ -82,8 +80,6 @@ def plus_one_form(request, user_id):
 @login_required(login_url='/polls/login/')
 def plus_one_info(request, user_id):
     guest_object = Guest.objects.get(guest_user=request.user)
-    print("(plus_one_info) using user:", request.user)
-    print("(plus_one_info) got guest obj:", guest_object)
     if request.method == "POST":
         form = PlusOneForm(request.POST)
         if form.is_valid():
@@ -91,8 +87,12 @@ def plus_one_info(request, user_id):
             plus_one_object = PlusOneGuest()
             plus_one_object.name = post.name
             plus_one_object.last_name = post.last_name
-            plus_one_object.drink_check = post.drink_check
+            if not guest_object.just_party:
+                plus_one_object.drink_check = post.drink_check
+                plus_one_object.is_veggie = post.is_veggie
+            plus_one_object.save()
             guest_object.plus_one = plus_one_object
+            guest_object.save()
             context = {
                 'guest': guest_object
             }

@@ -14,18 +14,19 @@
                 <input type="radio" name="choice" style="margin: 0.5em;" value="{{ 0 }}">
                 <label for="choice{{ no }}">No puedo ir...</label><br><br><br>
 
-                <h3 class="mt0 mb10">¿Tomas alcohol?</h3>
-                <input type="radio" name="alcohol" style="margin: 0.5em;" value="{{ 1 }}">
-                <label for="alcohol{{ yes }}">Si </label><br>
-                <input type="radio" name="alcohol" style="margin: 0.5em;" value="{{ 0 }}">
-                <label for="alcohol{{ no }}">No </label><br><br>
+                {% if not guest.just_party %}
+                    <h3 class="mt0 mb10">¿Tomas alcohol?</h3>
+                    <input type="radio" name="alcohol" style="margin: 0.5em;" value="{{ 1 }}">
+                    <label for="alcohol{{ yes }}">Si </label><br>
+                    <input type="radio" name="alcohol" style="margin: 0.5em;" value="{{ 0 }}">
+                    <label for="alcohol{{ no }}">No </label><br><br>
 
-                <h3 class="mt0 mb10">¿Eres vegetariano/vegano 🍆?</h3>
-                <input type="radio" name="veggie" style="margin: 0.5em;" value="{{ 1 }}">
-                <label for="veggie{{ yes }}">Si </label><br>
-                <input type="radio" name="veggie" style="margin: 0.5em;" value="{{ 0 }}">
-                <label for="veggie{{ no }}">No </label><br><br>
-
+                    <h3 class="mt0 mb10">¿Eres vegetariano/vegano 🍆?</h3>
+                    <input type="radio" name="veggie" style="margin: 0.5em;" value="{{ 1 }}">
+                    <label for="veggie{{ yes }}">Si </label><br>
+                    <input type="radio" name="veggie" style="margin: 0.5em;" value="{{ 0 }}">
+                    <label for="veggie{{ no }}">No </label><br><br>
+                {% endif %}
                 <input type="submit" class="btn btn-primary" value="Enviar">
             </form>
           </div>

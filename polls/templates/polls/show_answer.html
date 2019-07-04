@@ -12,6 +12,7 @@
                 <div class="col-md-12 col-md-offset-4 info-card-text">
                     <h4>✅ Ya confirmaste.</h4>
                 <!-- alcohol -->
+                {% if not guest.just_party %}
                     {% if guest.drink_check %}<h4>🍾 Tenemos anotado que <u>sí</u> bebes alcohol.</h4>
                     {% else %}<h4>🍹 Tenemos anotado que <u>no</u> bebes alcohol.</h4>
                     {% endif %}
@@ -19,6 +20,7 @@
                     {% if guest.is_veggie %}<h4>🥕 Y te tendremos comida vegana.</h4>
                     {% else %}<h4>🥩 Y que comes carne.</h4>
                     {% endif %}
+                {% endif %}
                 <!-- plus one -->
                     {% if guest.has_plus_one %}
                         {% if guest.plus_one is not None %}
@@ -26,13 +28,15 @@
                             <div class="info-plus-one">
                             <p>Nombre: {{ guest.plus_one.name }}<br>
                             Apellido: {{ guest.plus_one.last_name }}<br>
-                            Bebe alcohol:
-                            {% if guest.plus_one.drink_check %}Si<br>
-                            {% else %}No<br>
-                            {% endif %}
-                            Es vegetariano o vegano:
-                            {% if guest.plus_one.is_veggie %}Si
-                            {% else %}No
+                            {% if not guest.just_party %}
+                                Bebe alcohol:
+                                {% if guest.plus_one.drink_check %}Si<br>
+                                {% else %}No<br>
+                                {% endif %}
+                                Es vegetariano o vegano:
+                                {% if guest.plus_one.is_veggie %}Si
+                                {% else %}No
+                                {% endif %}
                             {% endif %}
                             </p></div>
                          {% else %}
