@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k&lo#buq$a!l)m&=w4y_+%roj3*59mpbad)ny$9@$+ojl@f&mc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['django-wedding-website.herokuapp.com', 'localhost', '127.0.0.1']
 
