@@ -279,7 +279,7 @@
           <div class="col-md-12 text-center">
               <form action="{% url 'polls:make_comment' %}" method="POST" class="post-form">
                 {% csrf_token %}
-                  <textarea type="text" name="text" maxlength="500" id="id_text" cols="40" rows="5"></textarea><br>
+                  <textarea type="text" name="text" maxlength="500" id="id_text" cols="40" rows="7"></textarea><br>
                 <button type="submit" class="btn btn-reverse" value="save">Enviar</button>
             </form>
           </div>
