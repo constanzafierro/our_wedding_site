@@ -5,6 +5,14 @@
 {% block content_base2 %}
         <div class="row mb40">
           <div class="col-md-12 text-center">
+          {% if guest.just_party %}
+              <h3 style="margin-bottom: 2em;">
+                {% if guest.guest_user.first_name.lstrip != "" %} {{ guest.guest_user.first_name }},
+                {% else %} {{ guest.guest_user.username }},
+                {% endif %} te invitamos a la fiesta desde las 00hrs 🎉.<br>
+                  Somos jóvenes y sin mucha plata 💸...
+                  Pero no queríamos que faltaras, para animar el carrete y celebrar juntos! 😊</h3>
+          {% endif %}
             <form action="{% url 'polls:send_answer' user.id %}" method="post">
             <h2 class="mt0 mb10">¿Vas a asistir a nuestro matrimonio? 👰🏽🤵🏾</h2>
             {% csrf_token %}

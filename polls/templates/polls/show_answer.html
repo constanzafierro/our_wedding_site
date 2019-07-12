@@ -4,7 +4,16 @@
 {% block content_base2 %}
         <div class="row mb40">
           <div class="col-md-12 text-center">
-            <h2 class="mt0 mb10">{{ guest.guest_user.username }}:</h2>
+            <h2 class="mt0 mb10">
+                {% if guest.guest_user.first_name and guest.guest_user.first_name.strip %}
+                    {{ guest.guest_user.first_name }}
+                {% else %}
+                    {{ guest.guest_user.username }}
+                {% endif %}:
+            </h2>
+          {% if guest.just_party and guest.confirmation_status %}
+              <h4>Te esperamos desde las 00:00 para celebrar en la fiesta!</h4>
+          {% endif %}
           </div>
         </div>
         <div class="row info-card">
